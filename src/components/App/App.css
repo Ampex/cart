@@ -1,10 +1,20 @@
-.container{
-    width: 1000px;
-    margin: 100px auto 0 auto;
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(241, 245, 248);
 }
 
-.row {
-    padding: 10px;
-    border-bottom: 1px solid silver;
-    list-style: none;
+ul li {
+  margin: 0.4rem;
+}
+
+span {
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+button {
+  min-width: 3rem;
 }
