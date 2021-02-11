@@ -1,18 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from "react"
+import "./App.css"
+import Products from "../Products"
+import Total from "../Total"
+import { CartProvider } from "../../context"
 
 const App = () => {
-
   return (
-    <div className="container">
-      <h3>Lista produktów</h3>
-      <ul>
-        <li className="row">Patelnia, cena: 89,99zł</li>
-      </ul>
+    <div className="my-5">
+      <CartProvider>
+        <Products />
+        <Total />
+      </CartProvider>
     </div>
-  );
-};
+  )
+}
 
-export {
-    App
-};
+export { App }
