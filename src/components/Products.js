@@ -12,13 +12,9 @@ const Products = () => {
 
   const getProducts = async () => {
     const products = await getProductList()
-    const addQuantity = products.map((item) => ({
+    const updatedList = products.map((item) => ({
       ...item,
       quantity: 1,
-    }))
-    const updatedList = addQuantity.map((item) => ({
-      ...item,
-      sum: parseFloat(item.price) * item.quantity,
     }))
     setProducts(updatedList)
   }

@@ -1,22 +1,22 @@
 import React, { useContext } from "react"
 import { Button } from "react-bootstrap"
 import { CartContext } from "../context"
-// import { useProductCheck } from "api"
+import { useProductCheck } from "api"
 
 const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
   const [products, setProducts] = useContext(CartContext)
 
+  const currentProduct =
+    products[products.findIndex((item) => item.pid === pid)]
+
   const handleIncrease = () => {
-    setProducts(
-      [...products],
-      products[products.findIndex((item) => item.pid === pid)].quantity++
-    )
+    setProducts([...products], currentProduct.quantity++)
+    useProductCheck(pid, quantity)
   }
+
   const handleDecrease = () => {
-    setProducts(
-      [...products],
-      products[products.findIndex((item) => item.pid === pid)].quantity--
-    )
+    setProducts([...products], currentProduct.quantity--)
+    useProductCheck(pid, quantity)
   }
 
   return (
@@ -28,7 +28,7 @@ const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
       <span className="col py-2 text-muted">
         Obecnie masz {quantity} sztuk produktu
       </span>
-      <div className="col-md-3">
+      <div className="col-md-3 text-right">
         <Button
           onClick={handleDecrease}
           className="m-md-2 mr-2"
@@ -37,8 +37,8 @@ const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
           -
         </Button>
         <Button
+          className="mr-2"
           onClick={handleIncrease}
-          className=""
           disabled={isBlocked || quantity === max}
         >
           +
