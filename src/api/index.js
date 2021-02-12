@@ -15,7 +15,7 @@ export const getProductList = async () => {
   }
 }
 
-export const useProductCheck = debounce(async (pid, quantity, setMin) => {
+export const useQuantityIfAvaiable = debounce(async (pid, quantity, setMin) => {
   await axios.post(services.productCheck, { pid, quantity }).catch(() => {
     return setMin()
   })

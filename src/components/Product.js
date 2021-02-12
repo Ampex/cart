@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Button } from "react-bootstrap"
 import { CartContext } from "../context"
-import { useProductCheck } from "api"
+import { useQuantityIfAvaiable } from "api"
 
 const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
   const [products, setProducts] = useContext(CartContext)
@@ -9,14 +9,15 @@ const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
     products[products.findIndex((item) => item.pid === pid)]
 
   // change quantity below to ex. 20 to see how reset works
-  const handleIncrease = async () => {
+  const handleIncrease = () => {
     setProducts([...products], currentProduct.quantity++)
-    await useProductCheck(pid, quantity, handleSetMin)
+    useQuantityIfAvaiable(pid, quantity, handleSetMin)
   }
+
   // change quantity below to ex. 20 to see how reset works
   const handleDecrease = () => {
     setProducts([...products], currentProduct.quantity--)
-    useProductCheck(pid, quantity, handleSetMin)
+    useQuantityIfAvaiable(pid, quantity, handleSetMin)
   }
 
   const handleSetMin = () => {
