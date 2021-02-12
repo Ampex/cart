@@ -3,7 +3,7 @@ import { getProductList } from "api"
 import { CartContext } from "../context"
 import Product from "./Product"
 
-const Products = () => {
+const ProductList = () => {
   const [products, setProducts] = useContext(CartContext)
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default ProductList

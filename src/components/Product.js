@@ -5,13 +5,12 @@ import { useProductCheck } from "api"
 
 const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
   const [products, setProducts] = useContext(CartContext)
-
   const currentProduct =
     products[products.findIndex((item) => item.pid === pid)]
 
-  const handleIncrease = () => {
+  const handleIncrease = async () => {
     setProducts([...products], currentProduct.quantity++)
-    useProductCheck(pid, quantity)
+    await useProductCheck(pid, quantity)
   }
 
   const handleDecrease = () => {

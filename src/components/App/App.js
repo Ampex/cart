@@ -1,14 +1,14 @@
 import React from "react"
 import "./App.css"
-import Products from "../Products"
+import ProductList from "../ProductList"
 import Total from "../Total"
-import { CartProvider } from "../../context"
+import { CartProvider } from "context"
 
 const App = () => {
   return (
     <div className="my-5">
       <CartProvider>
-        <Products />
+        <ProductList />
         <Total />
       </CartProvider>
     </div>
