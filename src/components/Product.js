@@ -8,14 +8,19 @@ const Product = ({ pid, name, price, quantity, isBlocked, min, max }) => {
   const currentProduct =
     products[products.findIndex((item) => item.pid === pid)]
 
+  // change quantity below to ex. 20 to see how reset works
   const handleIncrease = async () => {
     setProducts([...products], currentProduct.quantity++)
-    await useProductCheck(pid, quantity)
+    await useProductCheck(pid, quantity, handleSetMin)
   }
-
+  // change quantity below to ex. 20 to see how reset works
   const handleDecrease = () => {
     setProducts([...products], currentProduct.quantity--)
-    useProductCheck(pid, quantity)
+    useProductCheck(pid, quantity, handleSetMin)
+  }
+
+  const handleSetMin = () => {
+    setProducts([...products], (currentProduct.quantity = min))
   }
 
   return (

@@ -15,14 +15,8 @@ export const getProductList = async () => {
   }
 }
 
-export const useProductCheck = debounce(async (pid, quantity) => {
-  const result = await axios
-    .post(services.productCheck, { pid, quantity })
-    .then((response) => {
-      return response
-    })
-    .catch(({ response }) => {
-      return response.data.isError
-    })
-  return result
+export const useProductCheck = debounce(async (pid, quantity, setMin) => {
+  await axios.post(services.productCheck, { pid, quantity }).catch(() => {
+    return setMin()
+  })
 }, 1000)
